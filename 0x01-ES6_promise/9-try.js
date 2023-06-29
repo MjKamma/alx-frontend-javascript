@@ -1,4 +1,3 @@
-
 /* eslint-disable linebreak-style */
 export default function guardrail(mathFunction) {
   const queue = [];
