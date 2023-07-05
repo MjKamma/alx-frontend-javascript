@@ -1,24 +1,11 @@
-export default function updateStudentGradeByCity(
-  getListStudents,
-  city,
-  newGrades
-) {
-  const studentsCity = getListStudents.filter(
-    (student) => student.location === city
-  );
-  return studentsCity.map((student) => {
-    const filteredGrades = newGrades.filter(
-      (grade) => grade.studentId === student.id
-    );
-    if (filteredGrades.length > 0) {
-      return {
-        ...student,
-        grade: filteredGrades[0].grade,
-      };
-    }
-    return {
-      ...student,
-      grade: 'N/A',
-    };
-  });
+export default function updateStudentGradeByCity(arr, city, newGrades) {
+  // filter specified location, if location matches, look for new grade in the 'newGrade' array
+  return arr
+    .filter((student) => student.location === city)
+    .map((student) => {
+      const newGrade = newGrades.find(
+        (grade) => grade.studentId === student.id
+      );
+      return { ...student, grade: newGrade ? newGrade.grade : 'N/A' };
+    });
 }
